@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as webpack from 'webpack'
 import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ESlintWebpackPlugin from 'eslint-webpack-plugin'
 
 
 const config: webpack.Configuration = {
@@ -22,11 +23,15 @@ const config: webpack.Configuration = {
         extensions: ['.ts', '.js']
     },
     devServer: {
+        hot: true,
         static: './dist'
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
+        }),
+        new ESlintWebpackPlugin({
+            extensions: ['.js', '.ts']
         })
     ]
 }
