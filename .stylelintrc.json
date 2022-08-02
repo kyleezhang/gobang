@@ -1,25 +1,37 @@
 {
-    "extends": "stylelint-config-standard-scss",
-    "plugins": [
-        "stylelint-no-unsupported-browser-features"
-    ],
-    "rules": {
-        "plugin/no-unsupported-browser-features": [
-            true,
-            {
-              "severity": "warning",
-              "browsers": [
-                "> 2%",
-                "Last 2 versions",
-                "not IE 11",
-                "not dead",
-                "not OperaMini all",
-                "not Android > 0",
-                "not OperaMobile > 0"
-              ],
-              "ignore": ["rem", "border-radius", "flexbox", "css3-cursors", "user-select-none", "css-sticky"],
-              "ignorePartialSupport": true
-            }
-        ]
+  "configBaseDir": "./",
+  "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "rules": {
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "warning",
+        "browsers": [
+          "> 2%",
+          "Last 2 versions",
+          "not IE 11",
+          "not dead",
+          "not OperaMini all",
+          "not Android > 0",
+          "not OperaMobile > 0"
+        ],
+        "ignore": [
+          "rem",
+          "border-radius",
+          "flexbox",
+          "css3-cursors",
+          "user-select-none",
+          "css-sticky"
+        ],
+        "ignorePartialSupport": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "customSyntax": "postcss-scss"
     }
+  ]
 }
