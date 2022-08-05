@@ -4,12 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>五子棋</title>
     <!--[if lt IE 9]>
       <script> alert("对不起，您的浏览器不支持HTML5，请升级浏览器至IE9、firefox或者谷歌浏览器！")</script>
     <![endif]-->
 </head>
 <body>
-    我是五子棋
+  <div class="box" id="gobangBox">
+    <canvas id="gobang" width="620" height="570"></canvas>
+    <div class="box_operation" id="bnBox"> <a id="regretBtn">悔   棋(3)</a> <a id="restartBtn">重新开始</a> <a id="gohomeBtn">返回首页</a> </div>
+  </div>
+  <div class="menu" id="gobangMenu">
+		<div class="menu_info" id="depth">
+			<label>
+				<input name="depth" type="radio" value="0"> 菜鸟水平 </label><br>
+
+			<label>
+				<input name="depth" type="radio" value="1" checked> 中级水平</label><br>
+			<label>
+				<input name="depth" type="radio" value="2"> 高手水平</label>
+		</div>
+		<div class="menu_info" id="offens">
+			<label>
+				<input name="offens" type="radio" value="0" checked> 先手</label>
+			<br />
+			<label>
+				<input name="offens" type="radio" value="1"> 后手</label>
+		</div>
+		<a id="playBtn" class="menu_play">开始对弈</a>
+  </div>
+  <audio src="../static/audios/click.wav" id="clickAudio" preload="auto"></audio>
+	<audio src="../static/audios/select.wav" id="selectAudio" preload="auto"></audio>
 </body>
 </html>

@@ -6,10 +6,14 @@ import WebpackBaseConfig from './webpack.base';
 
 const config: webpack.Configuration = merge(WebpackBaseConfig, {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   devServer: {
     hot: true,
-    static: './dist',
+    port: 8082,
+    host: '0.0.0.0',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   plugins: [
     new ESlintWebpackPlugin({

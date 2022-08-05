@@ -8,8 +8,8 @@
     "prepare": "husky install",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use PNPM to install, not NPM')\"",
     "lint": "lint-staged",
-    "build-dev": "webpack-dev-server --open --config ./config/webpack.dev.ts",
-    "build-prod": "webpack --config ./config/webpack.prod.ts"
+    "dev": "webpack-dev-server --open --config ./config/webpack.dev.ts",
+    "build": "webpack --config ./config/webpack.prod.ts"
   },
   "repository": {
     "type": "git",

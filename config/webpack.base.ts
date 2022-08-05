@@ -26,6 +26,20 @@ const config: webpack.Configuration = {
           'postcss-loader',
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[hash][ext][query]'
+        }
+      },
+      {
+        test: /\.(wav)$/,
+        type: 'asset/resource',
+        generator: {
+          filnename: 'audio/[hash][ext][query]'
+        }
+      }
     ],
   },
   resolve: {
