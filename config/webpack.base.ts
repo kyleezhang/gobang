@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 const config: webpack.Configuration = {
   mode: 'development',
@@ -46,6 +47,11 @@ const config: webpack.Configuration = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'static' }
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
