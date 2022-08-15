@@ -33,13 +33,6 @@ const config: webpack.Configuration = {
         generator: {
           filename: 'img/[hash][ext][query]'
         }
-      },
-      {
-        test: /\.(wav)$/,
-        type: 'asset/resource',
-        generator: {
-          filnename: 'audio/[hash][ext][query]'
-        }
       }
     ],
   },

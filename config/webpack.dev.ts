@@ -11,6 +11,7 @@ const config: webpack.Configuration = merge(WebpackBaseConfig, {
     hot: true,
     port: 8082,
     host: '0.0.0.0',
+    static: 'dist',
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
