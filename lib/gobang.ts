@@ -1,19 +1,46 @@
-import { Board, BoardInterface } from './board';
+import { Board, BoardOptions } from './board';
 
-const BoardBgSrc = 'images/board.png';
+export enum RoleEnum {
+  WHITE,
+  BLACK,
+}
 
 class Gobang {
+  element: HTMLCanvasElement;
+
   context: CanvasRenderingContext2D;
 
-  board: BoardInterface;
+  board: Board;
+
+  boardOptions: BoardOptions; // 棋盘的参数
+
+  role: RoleEnum = RoleEnum.WHITE;
 
   constructor(ele: HTMLCanvasElement) {
+    this.element = ele;
     this.context = ele.getContext('2d')!;
-    this.board = new Board(BoardBgSrc);
+    this.boardOptions = {
+      borderColor: '#b6895a',
+      padding: 30,
+      count: 20,
+      lineWidth: 2,
+    };
+    this.board = new Board(this.boardOptions);
   }
 
   init() {
-    this.board.draw(this.context);
+    this.board.init(this.context);
+    this.element.addEventListener('click', this.listenDownChessman.bind(this));
+  }
+
+  // 监听落子
+  listenDownChessman(event: MouseEvent) {
+    let { offsetX: x, offsetY: y } = event;
+    x = Math.round((x - 15) / this.boardOptions.padding);
+    y = Math.round((y - 15) / this.boardOptions.padding);
+    this.board.drawChessman(this.context, x, y, this.role);
+
+    this.role = this.role === RoleEnum.BLACK ? RoleEnum.WHITE : RoleEnum.BLACK;
   }
 }
 

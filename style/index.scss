@@ -11,13 +11,19 @@ body {
 }
 
 .box {
-    width: 620px;
+    width: 630px;
     margin: 35px auto 0;
+
+    #gobang {
+        border-radius: 4px;
+        background: linear-gradient(#EAC8A0, #cda562);
+    }
 
     &_operation {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 12px 40px 0 40px;
 
         a {
             background: url(./images/btn-bg-box.png);
