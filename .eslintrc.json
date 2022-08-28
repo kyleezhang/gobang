@@ -11,12 +11,14 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "indent": ["error", 2],
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-unused-vars": "off",
     "no-console": "off",
     "class-methods-use-this": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "no-alert": "off"
   }
 }

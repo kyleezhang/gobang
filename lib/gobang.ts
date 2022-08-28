@@ -1,12 +1,12 @@
 import { Board, BoardOptions } from './board';
 
 export enum RoleEnum {
-  WHITE,
+  WHITE = 1,
   BLACK,
 }
 
 class Gobang {
-  element: HTMLCanvasElement;
+  boardElement: HTMLCanvasElement;
 
   context: CanvasRenderingContext2D;
 
@@ -17,7 +17,7 @@ class Gobang {
   role: RoleEnum = RoleEnum.WHITE;
 
   constructor(ele: HTMLCanvasElement) {
-    this.element = ele;
+    this.boardElement = ele;
     this.context = ele.getContext('2d')!;
     this.boardOptions = {
       borderColor: '#b6895a',
@@ -25,12 +25,12 @@ class Gobang {
       count: 20,
       lineWidth: 2,
     };
-    this.board = new Board(this.boardOptions);
+    this.board = new Board(this.boardOptions, this.boardElement);
   }
 
   init() {
     this.board.init(this.context);
-    this.element.addEventListener('click', this.listenDownChessman.bind(this));
+    this.boardElement.onclick = this.listenDownChessman.bind(this);
   }
 
   // 监听落子

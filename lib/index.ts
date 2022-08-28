@@ -1,6 +1,47 @@
 import '../style/index.scss';
 import Gobang from './gobang';
 
-const ele = document.getElementById('gobang')! as HTMLCanvasElement;
-const gobang = new Gobang(ele!);
-gobang.init();
+export enum DepthEnum {
+  PRIMARY,
+  INTERMEDIATE,
+  ADVANCED,
+}
+
+export enum OffensEnum {
+  FIRST,
+  SECOND,
+}
+
+interface ConfigInterface {
+  depth: DepthEnum;
+  offens: OffensEnum;
+}
+
+const config: ConfigInterface = {
+  depth: DepthEnum.INTERMEDIATE,
+  offens: OffensEnum.FIRST,
+};
+
+function getRadioValue(id: keyof ConfigInterface) {
+  const target = document.getElementById(id);
+  for (let i = 0; i < (target?.children?.length || 0); i += 1) {
+    const child = target?.children[i];
+    if (child?.tagName === 'LABEL') {
+      child.addEventListener('click', (e: any) => {
+        // @ts-ignore
+        config[id] = +e.target.value;
+        console.log(config, '####');
+      });
+    }
+  }
+}
+
+function init() {
+  getRadioValue('depth');
+  getRadioValue('offens');
+  const boardElement = document.getElementById('gobang')! as HTMLCanvasElement;
+  const gobang = new Gobang(boardElement!);
+  gobang.init();
+}
+
+init();

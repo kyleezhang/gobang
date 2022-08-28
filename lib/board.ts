@@ -12,16 +12,22 @@ export class Board {
 
   positions: number[][];
 
+  win: boolean;
+
+  element: HTMLCanvasElement;
+
   history: Array<{
     x: number;
     y: number;
     role: RoleEnum;
   }>;
 
-  constructor(options: BoardOptions) {
+  constructor(options: BoardOptions, ele: HTMLCanvasElement) {
     this.options = options;
     this.positions = [[]];
     this.history = [];
+    this.win = false;
+    this.element = ele;
   }
 
   init(ctx: CanvasRenderingContext2D) {
@@ -98,6 +104,49 @@ export class Board {
         y,
         role,
       });
+
+      // 每次落子完成后都要判断下输赢
+      setTimeout(() => {
+        this.checkReferee(x, y, role);
+      }, 0);
+    }
+  }
+
+  // 判断输赢
+  checkReferee(x: number, y: number, role: RoleEnum) {
+    let countContinuous = 0; // 连杀的分数
+    const XContinuous = this.positions.map((x) => x[y]); // 横向
+    const YContinuous = this.positions[x]; // 纵向
+    const S1Continuous: number[] = []; // 左斜线
+    const S2Continuous: number[] = []; // 右斜线
+    this.positions.forEach((position, index) => {
+      S1Continuous.push(position[index - x + y]);
+      S2Continuous.push(position[x - index + y]);
+    });
+
+    [XContinuous, YContinuous, S1Continuous, S2Continuous].forEach((axis) => {
+      if (
+        axis.some((x, i) => {
+          return (
+            axis[i] !== undefined &&
+            axis[i] !== 0 &&
+            axis[i - 2] === axis[i - 1] &&
+            axis[i - 1] === axis[i] &&
+            axis[i] === axis[i + 1] &&
+            axis[i + 1] === axis[i + 2]
+          );
+        })
+      ) {
+        countContinuous += 1;
+      }
+    });
+
+    // 如果赢了就给出提示
+    if (countContinuous) {
+      this.win = true;
+      const msg = `${role === RoleEnum.BLACK ? '黑' : '白'}子胜利`;
+      window.alert(msg);
+      this.element.onclick = null;
     }
   }
 }
