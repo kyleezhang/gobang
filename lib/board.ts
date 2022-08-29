@@ -31,8 +31,8 @@ export class Board {
   }
 
   init(ctx: CanvasRenderingContext2D) {
-    this.element.width = this.options.padding * this.options.count;
-    this.element.height = this.options.padding * this.options.count;
+    this.element.width = this.options.padding * (this.options.count + 1);
+    this.element.height = this.options.padding * (this.options.count + 1);
     this.drawBoard(ctx);
     this.initPositions();
   }
