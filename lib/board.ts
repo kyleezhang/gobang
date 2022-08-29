@@ -31,12 +31,15 @@ export class Board {
   }
 
   init(ctx: CanvasRenderingContext2D) {
+    this.element.width = this.options.padding * this.options.count;
+    this.element.height = this.options.padding * this.options.count;
     this.drawBoard(ctx);
     this.initPositions();
   }
 
   drawBoard(ctx: CanvasRenderingContext2D) {
     const { borderColor, lineWidth, count, padding } = this.options;
+    ctx.closePath();
     ctx.strokeStyle = borderColor;
     ctx.lineWidth = lineWidth;
     const lines = count + 1;

@@ -12,7 +12,7 @@ export enum OffensEnum {
   SECOND,
 }
 
-interface ConfigInterface {
+export interface ConfigInterface {
   depth: DepthEnum;
   offens: OffensEnum;
 }
@@ -28,20 +28,29 @@ function getRadioValue(id: keyof ConfigInterface) {
     const child = target?.children[i];
     if (child?.tagName === 'LABEL') {
       child.addEventListener('click', (e: any) => {
-        // @ts-ignore
-        config[id] = +e.target.value;
-        console.log(config, '####');
+        if (e.target.value) {
+          // @ts-ignore
+          config[id] = +e.target.value;
+        }
       });
     }
   }
+}
+
+function initBeginGame(gobang: Gobang) {
+  const target = document.getElementById('playBtn');
+  target!.onclick = (e) => {
+    gobang.display();
+  };
 }
 
 function init() {
   getRadioValue('depth');
   getRadioValue('offens');
   const boardElement = document.getElementById('gobang')! as HTMLCanvasElement;
-  const gobang = new Gobang(boardElement!);
+  const gobang = new Gobang(boardElement!, config);
   gobang.init();
+  initBeginGame(gobang);
 }
 
 init();

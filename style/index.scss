@@ -12,7 +12,7 @@ body {
 
 .box {
     width: 630px;
-    margin: 35px auto 0;
+    margin: 100px auto 0;
     display: none;
 
     #gobang {
@@ -24,7 +24,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 12px 40px 0 40px;
+        margin: 12px 145px 0 145px;
 
         a {
             background: url(./images/btn-bg-box.png);
@@ -46,7 +46,7 @@ body {
     width: 308px;
     height: 200px;
     padding: 100px 80px 0;
-    margin: 110px auto 0;
+    margin: 250px auto 0;
     display: flex;
     flex-wrap: wrap;
     background: url(./images/menu-bg.png);
