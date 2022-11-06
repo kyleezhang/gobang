@@ -37,20 +37,12 @@ function getRadioValue(id: keyof ConfigInterface) {
   }
 }
 
-function initBeginGame(gobang: Gobang) {
-  const target = document.getElementById('playBtn');
-  target!.onclick = (e) => {
-    gobang.display();
-  };
-}
-
 function init() {
   getRadioValue('depth');
   getRadioValue('offens');
   const boardElement = document.getElementById('gobang')! as HTMLCanvasElement;
   const gobang = new Gobang(boardElement!, config);
   gobang.init();
-  initBeginGame(gobang);
 }
 
 init();

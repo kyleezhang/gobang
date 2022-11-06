@@ -42,7 +42,8 @@ const config: webpack.Configuration = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'static' }
+        { from: 'static' },
+        { from: 'README.md' }
       ]
     }),
     new HtmlWebpackPlugin({

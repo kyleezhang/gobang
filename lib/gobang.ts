@@ -11,7 +11,7 @@ class Gobang {
 
   boxElement: HTMLDivElement;
 
-  menuElement: HTMLDivElement;
+  audioElement: HTMLAudioElement;
 
   context: CanvasRenderingContext2D;
 
@@ -28,7 +28,9 @@ class Gobang {
   constructor(ele: HTMLCanvasElement, config: ConfigInterface) {
     this.boardElement = ele;
     this.boxElement = document.getElementById('gobangBox') as HTMLDivElement;
-    this.menuElement = document.getElementById('gobangMenu') as HTMLDivElement;
+    this.audioElement = document.getElementById(
+      'clickAudio',
+    ) as HTMLAudioElement;
     this.context = ele.getContext('2d')!;
     this.boardOptions = {
       borderColor: '#b6895a',
@@ -41,14 +43,6 @@ class Gobang {
     this.offens = config.offens;
   }
 
-  initBackHome() {
-    const target = document.getElementById('gohomeBtn');
-    target!.onclick = () => {
-      this.boxElement.style.display = 'none';
-      this.menuElement.style.display = 'flex';
-    };
-  }
-
   initRestart() {
     const target = document.getElementById('restartBtn');
     target!.onclick = () => {
@@ -59,13 +53,7 @@ class Gobang {
   init() {
     this.board.init(this.context);
     this.boardElement.onclick = this.listenDownChessman.bind(this);
-    this.initBackHome();
     this.initRestart();
-  }
-
-  display() {
-    this.menuElement.style.display = 'none';
-    this.boxElement.style.display = 'block';
   }
 
   restart() {
@@ -75,6 +63,7 @@ class Gobang {
 
   // 监听落子
   listenDownChessman(event: MouseEvent) {
+    this.audioElement.play();
     let { offsetX: x, offsetY: y } = event;
     x = Math.round((x - 15) / this.boardOptions.padding);
     y = Math.round((y - 15) / this.boardOptions.padding);

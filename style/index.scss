@@ -13,7 +13,6 @@ body {
 .box {
     width: 630px;
     margin: 100px auto 0;
-    display: none;
 
     #gobang {
         border-radius: 4px;
@@ -23,8 +22,8 @@ body {
     &_operation {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin: 12px 145px 0 145px;
+        justify-content: center;
+        margin-top: 8px;
 
         a {
             background: url(./images/btn-bg-box.png);
@@ -39,38 +38,5 @@ body {
             text-align: center;
             font-size: 14px;
         }
-    }
-}
-
-.menu {
-    width: 308px;
-    height: 200px;
-    padding: 100px 80px 0;
-    margin: 250px auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    background: url(./images/menu-bg.png);
-
-    &_info {
-        color: #815332;
-        padding: 3px 0 3px 0px;
-        text-align: left;
-        width: 100px;
-        margin: 40px 0 5px 30px;
-        height: 75px
-    }
-
-    a.menu_play {
-        width: 146px;
-        height: 44px;
-        line-height: 36px;
-        text-align: center;
-        background: url(./images/btn-bg.png) center 0 no-repeat;
-        display: block;
-        margin: 0 auto 10px;
-        font-size: 14px;
-        color: #815332;
-        cursor: pointer;
-        clear: both;
     }
 }
